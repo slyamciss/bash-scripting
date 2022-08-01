@@ -2,3 +2,4 @@
 
 student_name='Tariq'
 echo Student Name = $student_name
+echo Student Name = ${student_name}

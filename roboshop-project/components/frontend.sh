@@ -1,1 +1,1 @@
-echo frontend
+yum install nginx -y

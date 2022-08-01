@@ -9,4 +9,4 @@ echo Good afternoon, today is $DATE
 
 ## command substitution
 DATE=$(date +%F)
-echo Good afternoon, today is $DATE
+echo Good afternoon, today is "$DATE"

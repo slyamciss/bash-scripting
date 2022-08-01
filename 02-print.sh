@@ -28,5 +28,5 @@ echo Hello world
   ## there are two more esc seq generally use in scripting
    # 1. New line \n
    # 2. New tab \t
-   echo -e "Line1\nLine2"
+   echo "Line1\nLine2"
    echo -e "WORD1\t\tWORD2"

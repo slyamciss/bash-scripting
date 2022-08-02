@@ -1,28 +1,27 @@
-
-LOG_FILE=/tmp/roboshop.log
-rm -f $LOG_FILE
+source components/common.sh
 
 echo "Installing NGINX"
-yum install nginx -y &>>$LOG_FILE
+yum install nginx -y &>>"$LOG_FILE"
 
 echo "Download Frontend Content"
-curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>>$LOG_FILE
+curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>>"$LOG_FILE"
 
 echo "Clean old Content"
-rm -rf /usr/share/nginx/html/* &>>$LOG_FILE
+rm -rf /usr/share/nginx/html/* &>>"$LOG_FILE"
 
 echo "Extract Frontend Content"
 cd /tmp
-unzip -o frontend.zip &>>$LOG_FILE
+# shellcheck disable=SC2086
+unzip -o frontend.zip &>>"$LOG_FILE"
 
 echo "Copy Extracted Content to Nginx Path"
-cp -r frontend-main/static/* /usr/share/nginx/html/ &>>$LOG_FILE
+cp -r frontend-main/static/* /usr/share/nginx/html/ &>>"$LOG_FILE"
 
 echo "Copy Nginx RoboShop Config"
-cp frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf &>>$LOG_FILE
+cp frontend-main/localhost.conf /etc/nginx/default.d/roboshop.conf &>>"$LOG_FILE"
 
 echo "Start Nginx Service"
-systemctl enable nginx &>>$LOG_FILE
-systemctl restart nginx  &>>$LOG_FILE
+systemctl enable nginx &>>"$LOG_FILE"
+systemctl restart nginx  &>>"$LOG_FILE"
 
 
